@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Adicionar Saída</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+
+	<form name="DateForm">
+
+		<h3 class="col-md-offset-2">Entrada</h3>
+
+		<div class="row">		
+
+			<div class="col-md-8 col-md-offset-2">
+				<h4 class="text-center">{{EventCtrl.entryDate | date:"dd/MM/yyyy 'às' hh:mm"}}</h4>
+			</div>
+
+		</div>
+
+		<h3 class="col-md-offset-2">Saída</h3>
+
+		<div class="row">		
+
+			<div class="input-group col-md-8 col-md-offset-2">
+			    <input type="text" name="exit" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="EventCtrl.exitDate" is-open="EventCtrl.exitDatePickerEnabled" datepicker-options="EventCtrl.exitDatePickerOptions" timepicker-options="EventCtrl.exitTimePickerOptions" required />
+			    <span class="input-group-btn">
+			        <button type="button" class="btn btn-default" ng-click="EventCtrl.OpenDatePicker('exit')"><i class="glyphicon glyphicon-calendar"></i></button>
+			    </span>
+			</div>
+			
+		</div>
+
+		<br />
+
+		<br />
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+
+    <button class="btn btn-primary" type="button" ng-click="EventCtrl.Confirm()" ng-disabled="DateForm.$invalid" >Confirmar</button>
+
+    <button class="btn btn-warning" type="button" ng-click="EventCtrl.Cancel()">Cancelar</button>
+
+</div>

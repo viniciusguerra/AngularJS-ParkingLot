@@ -1,0 +1,163 @@
+<div ng-controller="PlateBrowserController as BrowserCtrl">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <h2 class="text-center">Lista de Placas <small>Por Tipo de Serviço</small></h2>
+    </div>
+
+    <br />
+
+    <div class="row">
+
+        <!-- Browsing Tabs -->
+        <div class="row col-md-offset-2 col-md-8">
+
+            <uib-tabset active="activeJustified" justified="true">
+
+                <!-- All Services Tab -->
+                <uib-tab index="0" heading="Todos">
+
+                    <div class="jumbotron">
+
+                        <div class="row">
+
+                            <div class="form-inline">
+
+                                    <span class="h3">Todas As Placas</span>
+
+                                    <div class="input-group col-md-3 pull-right">                               
+                                        <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Buscar Placa">
+
+                                        <span class="input-group-addon glyphicon glyphicon-search glyphicon-vert-align"></span>
+
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row margin-top-md">
+                            
+                            <table class="table table-striped">
+
+                                <tr>
+                                    <th>Número de Placa</th>
+                                    <th>Tipo de Serviço</th>
+                                    <th>Valor Devido</th>
+                                </tr>
+                                
+                                <tr ng-repeat="pair in BrowserCtrl.allPlates | filter : { plate : { id : searchKeyword } }">
+                                    <td><a href="" ng-click="BrowserCtrl.ShowDetails(pair.plate, false)">{{pair.plate.id}}</a></td>
+                                    <td>{{pair.service.type}}</td>
+                                    <td>{{pair.plate.due | currency : "R$" : 2}}</td>
+                                </tr>                                                              
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </uib-tab>
+
+                <!-- Service Iteration Tabs -->
+                <uib-tab index="$index + 1" ng-repeat="service in BrowserCtrl.parkingServices" heading="{{service.type}}">
+                    <div class="jumbotron">
+
+                        <div class="row">
+
+                            <div class="form-inline">
+
+                                <div class="input-group col-md-3 pull-right">   
+
+                                    <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Buscar Placa">
+
+                                    <span class="input-group-addon glyphicon glyphicon-search glyphicon-vert-align"></span>
+
+                                </div>
+
+                                <span class="h3">Serviço {{service.type}}</span><br><br>
+                                
+                                <span class="h4">{{service.description}}</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row margin-top-md">
+
+                            <table class="table table-striped">
+
+                                <tr>
+                                    <th>Número de Placa</th>
+                                    <th>Tipo de Serviço</th>
+                                    <th>Valor Devido</th>
+                                </tr>
+
+                                <tr ng-repeat="plate in service.plates | filter : searchKeyword">
+                                    <td><a href="" ng-click="BrowserCtrl.ShowDetails(plate, false)">{{plate.id}}</a></td>
+                                    <td>{{service.type}}</td>
+                                    <td>{{plate.due | currency : "R$" : 2}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </uib-tab>
+
+                <!-- Archived Plates Tab -->
+                <uib-tab index="BrowserCtrl.parkingServices.length + 1" heading="Arquivadas">
+
+                    <div class="jumbotron">
+
+                        <div class="row">
+
+                            <div class="form-inline">
+
+                                    <span class="h3">Placas Arquivadas</span>
+
+                                    <div class="input-group col-md-3 pull-right">                               
+                                        <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Buscar Placa">
+
+                                        <span class="input-group-addon glyphicon glyphicon-search glyphicon-vert-align"></span>
+
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row margin-top-md">
+                            
+                            <table class="table table-striped">
+
+                                <tr>
+                                    <th>Número de Placa</th>
+                                    <th>Tipo de Serviço</th>
+                                    <th>Valor Devido</th>
+                                </tr>
+                                
+                                <tr ng-repeat="archive in BrowserCtrl.archivedPlates | filter : searchKeyword">
+                                    <td><a href="" ng-click="BrowserCtrl.ShowDetails(archive.plate, true)">{{archive.plate.id}}</a></td>
+                                    <td>{{archive.service.type}}</td>
+                                    <td>{{archive.plate.due | currency : "R$" : 2}}</td>
+                                </tr>                                                              
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </uib-tab>
+
+            </uib-tabset>
+
+        </div>
+
+    </div>
+
+</div>

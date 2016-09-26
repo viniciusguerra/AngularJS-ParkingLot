@@ -1,0 +1,69 @@
+<div ng-controller="PlateRegisterController as RegisterCtrl">
+
+	<!-- heading -->
+    <div class="row">
+        <h2 class="text-center">Cadastrar Nova Placa</h2>
+    </div>
+
+    <br />
+
+    <div class="jumbotron col-md-8 col-md-offset-2">
+
+		<form name="PlateForm">
+
+			<div class="form-group">
+
+				<label for="IdField" class="col-md-3 control-label">Número da Placa</label>
+
+				<div ng-hide="PlateForm.IdField.$untouched || PlateForm.IdField.$valid" ng-messages="PlateForm.IdField.$error" class="alert-danger pull-right col-md-8 text-center">
+					<div ng-message="pattern">
+						O valor dado não se encaixa no padrão AAA-0000
+					</div>
+					<div ng-message="required">
+						Por favor, insira um Número de Placa
+					</div>
+				</div>
+
+				<input class="form-control" type="text" ng-model="RegisterCtrl.plate.id" name="IdField" placeholder="AAA-0000" ng-required="true" ng-pattern="/^[a-zA-Z]{3}-[0-9]{4}$/" />
+				
+
+			</div>
+
+			<div class="form-group">
+
+				<label for="TypeSelect" class="col-md-3 control-label">Tipo de Serviço</label>
+
+				<div ng-hide="PlateForm.TypeSelect.$untouched || PlateForm.TypeSelect.$valid" ng-messages="PlateForm.TypeSelect.$error" class="alert-danger pull-right col-md-8 text-center">
+					<div ng-message="required">
+						Por favor, selecione um Tipo de Serviço
+					</div>
+				</div>
+
+				<select class="form-control" name="TypeSelect" ng-model="RegisterCtrl.plateServiceType" ng-options="serviceType.type for serviceType in RegisterCtrl.parkingServices" ng-required="true">
+					<option value="">Selecione um tipo de serviço</option>
+				</select>	
+
+				<!--
+					Add DatePicker for "Rotativo"
+				-->	
+
+				<hr>
+
+				<button class="btn btn-primary btn-block" ng-disabled="PlateForm.$invalid" ng-click="RegisterCtrl.Register()">Cadastrar</button>
+
+				<br />
+
+				<div ng-show="messageContainer.enabled === true" ng-messages="messageContainer" class="alert alert-danger">
+					<div ng-message="capacity">Limite de clientes alcançado para o serviço selecionado</div>
+					<div ng-message="id">Número de Placa já inserido</div>
+				</div>
+
+				<br />
+
+			</div>
+
+		</form>
+
+	</div>
+
+</div>

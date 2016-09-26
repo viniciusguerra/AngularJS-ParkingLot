@@ -1,0 +1,38 @@
+body
+{
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer
+{
+    margin: 50px 0;
+}
+
+.margin-top-sm
+{
+	position: relative;
+	margin-top: 20px;
+}
+
+.margin-bottom-sm
+{
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.margin-top-md
+{
+	position: relative;
+	margin-top: 30px;
+}
+
+.margin-bottom-md
+{
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.glyphicon-vert-align
+{
+    top: 0px;
+}

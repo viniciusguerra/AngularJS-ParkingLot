@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="ParkingLotApp" ng-controller="MetaController as MetaCtrl" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="App de teste de AngularJS, HTML5 e CSS">
+    <meta name="author" content="Vinícius Guerra Cardoso">
+
+    <!-- one-way bound title to save watchers -->
+    <title>{{::MetaCtrl.title}}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/ParkingLotApp.css" rel="stylesheet">
+
+    <!-- Cursor Fix for AngularJS Bootstrap UI -->
+    <style type="text/css">
+        .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+    </style>
+
+    <!-- AngularJS -->
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.min.js"></script>
+    <script src="assets/js/angular-messages.min.js"></script>
+    <script src="assets/js/angular-animate.min.js"></script>
+
+    <!-- LocalStorage for AngularJS -->
+    <script src="assets/js/ngStorage.min.js"></script>    
+
+    <!-- UI Bootstrap for AngularJS -->
+    <script src="assets/js/ui bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!-- DatePicker and TimePicker Using UI Bootstrap -->
+    <script src="assets/js/datetime-picker.min.js"></script>
+
+    <!-- AngularJS Hotkeys -->
+    <script src="assets/js/hotkeys.min.js"></script>
+
+    <!-- Lodash Wrapper for AngularJS -->
+    <script src="assets/js/ng-lodash.min.js"></script>
+
+    <!-- App Scripts -->
+    <script src="app/modules.js"></script>    
+    <script src="app/config.js"></script>
+    <script src="app/controllers.js"></script>    
+    <script src="app/factories.js"></script>
+    <script src="app/filters.js"></script>
+    <script src="app/routes.js"></script>    
+    <script src="app/services.js"></script>
+
+    <!-- AngularJS UI href-less Links Fix -->
+    <style type="text/css">
+        .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+    </style>
+
+</head>
+
+<body ng-keyup="MetaCtrl.keyPress($event)">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{::MetaCtrl.title}}</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">                
+                    <li>
+                        <a href="#/browse" class="">Listar</a>
+                    </li>
+                    <li>
+                        <a href="#/register" class="">Cadastrar</a>            
+                    </li>                
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->   
+
+    <!-- Main Content -->                        
+    <div class="container">
+
+        <div class="row">
+
+            <div ng-view></div>            
+
+        </div>
+
+    </div>  
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="navbar navbar-fixed-bottom">
+
+            <hr>
+
+            <div class="col-lg-12">
+                <p class="pull-right">Vinícius Guerra Cardoso 2016</p>
+            </div>
+
+        </div>
+
+    </footer>
+    <!-- /.container -->
+
+</body>
+
+</html>

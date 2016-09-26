@@ -1,0 +1,37 @@
+<div ng-controller="PlateDetailController as DetailCtrl">
+
+	<!-- heading -->
+    <div class="row">
+        <h2 class="text-center">{{DetailCtrl.plate.id}}</h2>
+    </div>
+
+    <br />
+
+	<div class="jumbotron col-md-8 col-md-offset-2">
+
+		<h3>Valor Devido: {{DetailCtrl.plate.due | currency : "R$" : 2}}</h3>
+
+		<hr />
+
+		<h3>Eventos</h3>		
+
+		<br />
+
+		<table class="table table-striped">
+			<tr>
+				<th>Horário de Entrada</th>
+				<th>Horário de Saída</th>
+			</tr>
+			<tr ng-repeat="event in DetailCtrl.plate.events">
+				<td>{{event.entryDateTime | date:"dd/MM/yyyy 'às' HH:mm"}}</td>
+				<td>{{DetailCtrl.IsExitDateValid(event) ? (event.exitDateTime | date:"dd/MM/yyyy 'às' HH:mm") : ''}}<button class="btn btn-primary btn-xs" ng-show="!DetailCtrl.IsExitDateValid(event)" ng-click="DetailCtrl.ShowEventModal('md', event)">Adicionar Saída</button></td>
+				<!-- <td>{{event.exitDateTime | date:"dd/MM/yyyy 'às' hh:mm"}}</td> -->
+			</tr>
+		</table>
+
+		<button class="btn btn-sm btn-primary" ng-disabled="DetailCtrl.isArchived" ng-click="DetailCtrl.ShowEventModal('md')">Adicionar Novo Evento</button>
+
+		<button class="btn btn-sm btn-danger pull-right" ng-click="DetailCtrl.RemovePlate()">Excluir Placa</button>
+	</div>
+
+</div>
