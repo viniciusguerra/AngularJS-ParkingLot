@@ -29,9 +29,9 @@
 			</tr>
 		</table>
 
-		<button class="btn btn-sm btn-primary" ng-disabled="DetailCtrl.isArchived" ng-click="DetailCtrl.ShowEventModal('md')">Adicionar Novo Evento</button>
+		<button class="btn btn-sm btn-primary" ng-disabled="DetailCtrl.isArchived" ng-click="DetailCtrl.ShowEventModal('md')">Adicionar Evento</button>
 
-		<button class="btn btn-sm btn-danger pull-right" ng-click="DetailCtrl.RemovePlate()">Excluir Placa</button>
+		<button class="btn btn-sm btn-danger pull-right" ng-click="DetailCtrl.RemovePlate()">{{DetailCtrl.isArchived ? 'Excluir Placa' : 'Arquivar Placa'}}</button>
 	</div>
 
 </div>
