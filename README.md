@@ -13,8 +13,9 @@ Configura meta informação da aplicação, como nome da empresa.
 
 O serviço de serviços de estacionamento é *desacoplado* e *dinâmico*, permitindo o registro de diversos tipos de serviço. Para isso:
 
-1. Deve-se criar um objeto no formato:
-```
+Deve-se criar um objeto no formato:
+
+```javascript
 var service = {
 	type: '',			//guarda o nome desse serviço para uso em operações do sistema
 	description: '',	//usado para exibição de informações sobre o serviço na página de listagem
@@ -24,8 +25,9 @@ var service = {
 	}
 ```
 
-2. Deve-se definir a função de cálculo de preço no seguinte formato:
-```
+Em seguida, deve-se definir a função de cálculo de preço no seguinte formato:
+
+```javascript
 var calculoDeCusto = {
 	'type' : function(plate, service){
 		//valor devido
@@ -40,6 +42,7 @@ var calculoDeCusto = {
 ```
 
 A função que calcula o custo da placa será chamada nas seguintes situações:
+
 1. Para todas as placas no serviço sendo exibido na página de listagem
 2. Para a placa na página de detalhe quando ela é exibida e quando um novo evento é inserido
 
@@ -55,6 +58,7 @@ Abaixo, serão explicadas suas funções principais.
 A listagem de placas é feita a partir [dessa página](https://viniciusguerra.github.io/AngularJS-ParkingLot/index.html#/browse), acessível clicando no nome da empresa no header ou no botão Listar no menu superior.
 
 As seguintes abas são exibidas, respectivamente:
+
 1. Todas as placas de todos os serviços
 2. Abas geradas dinâmicamente para os serviços configurados
 3. Aba de arquivo para as placas removidas
@@ -65,17 +69,20 @@ Clicar no número de uma placa leva à sua página de detalhes.
 
 ### Detalhes
 
-A página de detalhes exibe informações sobre a placa e uma tabela com os seus eventos de entrada e saída. Para inserir um evento, clique no botão no canto inferior esquerdo.
+A página de detalhes exibe informações sobre a placa e uma tabela com os seus eventos de entrada e saída. Para inserir um evento, clique no botão Adicionar Evento no canto inferior esquerdo.
 
 O único campo obrigatório é o de entrada. Ao registrar o evento:
-* Se o campo de saída for preenchido o evento será inserido na tabela e usado para cálculo do custo devido.
-** O serviço rotativo conta as horas de uso entre entrada e saída de cada evento.
-** O serviço mensal cobra pelos meses em que o serviço foi utilizado. Intervalos entre meses sem uso não são contados. Eventos com intervalos de meses entre a entrada e saída são contados.
-* Se o campo de saída não for preenchido, o evento será inserido na tabela e exibirá um botão no campo de horário de saída, permitindo a inserção desse valor
-** O serviço rotativo só calcula o preço após a inserção de um horário de saída
-** O serviço mensal conta com o mês de entrada mesmo sem a inserção da saída
 
-Em uma placa ativa, o botão de excluir placa fará com que ela seja arquivada, sendo exibida na página de listagem na aba de placas arquivadas. A exibição de uma placa arquivada não permite a inserção de novos eventos. Ao remover uma placa arquivada, ela é deletada do sistema.
+* Se o campo de saída for preenchido o evento será inserido na tabela e usado para cálculo do custo devido.
+  * O serviço rotativo conta as horas de uso entre entrada e saída de cada evento.
+  * O serviço mensal cobra pelos meses em que o serviço foi utilizado. Intervalos entre meses sem uso não são contados. Eventos com intervalos de meses entre a entrada e saída são contados.
+* Se o campo de saída não for preenchido, o evento será inserido na tabela e exibirá um botão no campo de horário de saída, permitindo a inserção desse valor
+  * O serviço rotativo só calcula o preço após a inserção de um horário de saída
+  * O serviço mensal conta com o mês de entrada mesmo sem a inserção da saída
+
+Em uma placa ativa, o botão de Arquivar Placa fará com que ela seja arquivada, sendo exibida na página de listagem na aba de placas arquivadas. A exibição de uma placa arquivada não permite a inserção de novos eventos.
+
+Em uma placa arquivada, o botão Excluir Placa faz com que ela seja completamente removida do sistema.
 
 ### Registro
 
